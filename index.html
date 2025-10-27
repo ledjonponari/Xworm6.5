@@ -78,6 +78,35 @@
     color: #646cff;
     opacity: 0.8;
   }
+
+  /* Captcha modal */
+  .captcha-modal {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.95);
+    padding: 25px 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 25px rgba(90,120,255,0.7);
+    z-index: 10;
+  }
+  .captcha-modal button {
+    margin-top: 15px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 30px;
+    background: #5f5fff;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 0 15px rgba(90,120,255,0.6);
+  }
+  .captcha-modal button:hover {
+    box-shadow: 0 0 25px rgba(90,120,255,0.9);
+  }
 </style>
 </head>
 <body>
@@ -88,19 +117,34 @@
   <button class="download-btn" id="downloadBtn">Download</button>
   <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
   <div class="corner">@Medusa INC</div>
+
+  <div class="captcha-modal" id="captchaModal">
+    <p>Please verify you are human</p>
+    <button id="verifyBtn">I am human</button>
+  </div>
 </div>
 
 <script>
 const btn = document.getElementById('downloadBtn');
 const statusEl = document.getElementById('status').querySelector('span');
 const progressBar = document.getElementById('progressBar');
+const captcha = document.getElementById('captchaModal');
+const verifyBtn = document.getElementById('verifyBtn');
 
 btn.addEventListener('click', () => {
+  // Show captcha modal
+  captcha.style.display = 'block';
+});
+
+verifyBtn.addEventListener('click', () => {
+  // Hide captcha modal
+  captcha.style.display = 'none';
+  // Start download simulation
   btn.disabled = true;
   statusEl.textContent = 'Downloading';
   let p = 0;
 
-  // Animated dots for "Downloading..."
+  // Animated dots
   let dots = 0;
   const dotsInterval = setInterval(() => {
     dots = (dots + 1) % 4;
@@ -108,7 +152,7 @@ btn.addEventListener('click', () => {
   }, 500);
 
   const timer = setInterval(() => {
-    p += Math.random() * 20; // fast progress
+    p += Math.random() * 20;
     if (p >= 100) {
       p = 100;
       clearInterval(timer);
